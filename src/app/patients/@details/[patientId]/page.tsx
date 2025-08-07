@@ -28,7 +28,7 @@ const statusVariant: Record<Patient['status'], 'default' | 'secondary' | 'destru
 
 export default function PatientDetailsPage({ params }: { params: { patientId: string } }) {
   const patient = patients.find(p => p.id === params.patientId);
-  const record: MedicalRecord = (medicalRecords as Record<string, MedicalRecord>)[params.patientId];
+  const record: MedicalRecord | undefined = (medicalRecords as Record<string, MedicalRecord>)[params.patientId];
   const age = 34; // Placeholder
 
   if (!patient || !record) {
@@ -37,10 +37,11 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
             <Card className="flex h-full items-center justify-center">
                 <CardHeader className="text-center">
                     <CardTitle>Patient not found</CardTitle>
+                    <CardDescription>The patient with the specified ID could not be found.</CardDescription>
                 </CardHeader>
             </Card>
         </main>
-    )
+    );
   }
 
   return (
@@ -183,3 +184,5 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
     </main>
   );
 }
+
+    
