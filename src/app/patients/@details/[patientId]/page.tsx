@@ -1,4 +1,3 @@
-
 'use client'
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,7 +19,7 @@ const patients: Patient[] = [
   { id: 'pat_6', name: 'James Wilson', email: 'james.w@email.com', lastCheckIn: 'July 22, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'JW' },
 ];
 
-const statusVariant: Record<Patient['status'], 'default' | 'secondary' | 'destructive'> = {
+const statusVariant: { [key in Patient['status']]: 'default' | 'secondary' | 'destructive' } = {
   'Stable': 'default',
   'At Risk': 'secondary',
   'Needs Review': 'destructive',
@@ -184,5 +183,3 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
     </main>
   );
 }
-
-    
