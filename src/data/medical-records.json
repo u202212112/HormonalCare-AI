@@ -1,0 +1,48 @@
+
+{
+  "pat_1": {
+    "patientHistory": [
+      { "id": "hist_1", "condition": "Polycystic Ovary Syndrome (PCOS)", "diagnosedOn": "2022-01-15", "status": "Ongoing" },
+      { "id": "hist_2", "condition": "Hypothyroidism", "diagnosedOn": "2023-03-02", "status": "Managed" }
+    ],
+    "diagnosisTreatment": [
+        { "id": "diag_1", "diagnosis": "Recurrent Ovarian Cysts", "treatment": "Hormonal therapy and regular monitoring.", "date": "2024-05-10" }
+    ],
+    "medicalTest": [
+        { "id": "test_1", "testName": "Ultrasound Pelvic", "date": "2024-07-15", "resultUrl": "/reports/ultrasound_pat1.pdf" }
+    ],
+    "externalReports": []
+  },
+  "pat_2": {
+    "patientHistory": [],
+    "diagnosisTreatment": [],
+    "medicalTest": [],
+    "externalReports": []
+  },
+  "pat_3": {
+     "patientHistory": [
+      { "id": "hist_3", "condition": "Menstrual Irregularities", "diagnosedOn": "2023-11-05", "status": "Under Observation" }
+    ],
+    "diagnosisTreatment": [],
+    "medicalTest": [],
+    "externalReports": []
+  },
+  "pat_4": {
+    "patientHistory": [],
+    "diagnosisTreatment": [],
+    "medicalTest": [],
+    "externalReports": []
+  },
+  "pat_5": {
+    "patientHistory": [],
+    "diagnosisTreatment": [],
+    "medicalTest": [],
+    "externalReports": []
+  },
+  "pat_6": {
+    "patientHistory": [],
+    "diagnosisTreatment": [],
+    "medicalTest": [],
+    "externalReports": []
+  }
+}
