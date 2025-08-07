@@ -1,97 +1,70 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Patient } from "@/lib/types";
-import { MoreHorizontal, PlusCircle } from "lucide-react";
+import { PlusCircle, Search } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const patients: Patient[] = [
-  { id: 'pat_1', name: 'Olivia Martin', email: 'olivia.martin@email.com', lastCheckIn: 'July 20, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'OM' },
-  { id: 'pat_2', name: 'Liam Garcia', email: 'liam.g@email.com', lastCheckIn: 'July 18, 2024', status: 'At Risk', avatar: 'https://placehold.co/100x100.png', initials: 'LG' },
-  { id: 'pat_3', name: 'Emma Johnson', email: 'emma.j@email.com', lastCheckIn: 'June 30, 2024', status: 'Needs Review', avatar: 'https://placehold.co/100x100.png', initials: 'EJ' },
-  { id: 'pat_4', name: 'Noah Brown', email: 'noah.b@email.com', lastCheckIn: 'July 21, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'NB' },
-  { id: 'pat_5', name: 'Ava Rodriguez', email: 'ava.r@email.com', lastCheckIn: 'July 15, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'AR' },
-  { id: 'pat_6', name: 'James Wilson', email: 'james.w@email.com', lastCheckIn: 'July 22, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'JW' },
+    { id: 'pat_1', name: 'Olivia Martin', email: 'olivia.martin@email.com', lastCheckIn: 'July 20, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'OM' },
+    { id: 'pat_2', name: 'Liam Garcia', email: 'liam.g@email.com', lastCheckIn: 'July 18, 2024', status: 'At Risk', avatar: 'https://placehold.co/100x100.png', initials: 'LG' },
+    { id: 'pat_3', name: 'Emma Johnson', email: 'emma.j@email.com', lastCheckIn: 'June 30, 2024', status: 'Needs Review', avatar: 'https://placehold.co/100x100.png', initials: 'EJ' },
+    { id: 'pat_4', name: 'Noah Brown', email: 'noah.b@email.com', lastCheckIn: 'July 21, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'NB' },
+    { id: 'pat_5', name: 'Ava Rodriguez', email: 'ava.r@email.com', lastCheckIn: 'July 15, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'AR' },
+    { id: 'pat_6', name: 'James Wilson', email: 'james.w@email.com', lastCheckIn: 'July 22, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'JW' },
 ];
 
-const statusVariant: Record<Patient['status'], 'default' | 'secondary' | 'destructive'> = {
-  'Stable': 'default',
-  'At Risk': 'secondary',
-  'Needs Review': 'destructive',
-};
+export default function PatientsListPage() {
+  const selectedPatientId = 'pat_1'; // This would be dynamic in a real app
 
-export default function PatientsPage() {
   return (
-    <div className="flex h-full flex-col">
-      <header className="flex items-center justify-between gap-4 border-b p-4">
-        <div className="flex items-center gap-4">
-          <SidebarTrigger className="md:hidden" />
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Patients</h1>
-            <p className="text-sm text-muted-foreground">Manage your patient records.</p>
-          </div>
+    <aside className="w-full max-w-sm border-r flex flex-col">
+        <header className="flex items-center justify-between gap-4 border-b p-4">
+            <div className="flex items-center gap-4">
+                <SidebarTrigger className="md:hidden" />
+                <div>
+                    <h1 className="text-2xl font-bold tracking-tight">Patients</h1>
+                </div>
+            </div>
+            <Button size="icon">
+                <PlusCircle className="h-5 w-5" />
+                <span className="sr-only">Add Patient</span>
+            </Button>
+        </header>
+        <div className="p-4">
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Search patients..." className="pl-9" />
+            </div>
         </div>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add Patient
-        </Button>
-      </header>
-      <main className="flex-1 overflow-auto p-4 md:p-6">
-        <Card>
-          <CardContent className="pt-6">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead className="hidden sm:table-cell">Status</TableHead>
-                  <TableHead className="hidden md:table-cell">Last Check-in</TableHead>
-                  <TableHead><span className="sr-only">Actions</span></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {patients.map((patient) => (
-                  <TableRow key={patient.id}>
-                    <TableCell>
-                      <div className="flex items-center gap-4">
-                        <Avatar className="h-10 w-10 border">
-                            <AvatarImage src={patient.avatar} alt={patient.name} data-ai-hint="person portrait" />
-                            <AvatarFallback>{patient.initials}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <div className="font-medium">{patient.name}</div>
-                          <div className="text-sm text-muted-foreground hidden md:inline">{patient.email}</div>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge variant={statusVariant[patient.status]} className="capitalize">{patient.status}</Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">{patient.lastCheckIn}</TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Patient Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View Details</DropdownMenuItem>
-                          <DropdownMenuItem>Edit Record</DropdownMenuItem>
-                          <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">Delete Patient</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+        <ScrollArea className="flex-1">
+            <div className="p-4 pt-0">
+                <div className="flex flex-col gap-2">
+                    {patients.map((patient) => (
+                        <Link href={`/patients/${patient.id}`} key={patient.id} >
+                            <Card className={cn("hover:bg-accent transition-colors", selectedPatientId === patient.id && "bg-accent")}>
+                                <CardContent className="p-3">
+                                    <div className="flex items-center gap-3">
+                                        <Avatar className="h-10 w-10 border">
+                                            <AvatarImage src={patient.avatar} alt={patient.name} data-ai-hint="person portrait" />
+                                            <AvatarFallback>{patient.initials}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                            <div className="font-medium">{patient.name}</div>
+                                            <div className="text-sm text-muted-foreground">{patient.email}</div>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </ScrollArea>
+    </aside>
   );
 }
