@@ -58,17 +58,17 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
           <Button variant="outline" size="icon"><Pencil className="h-4 w-4" /></Button>
         </CardHeader>
         <CardContent>
-            <Tabs defaultValue="medical-record">
+            <Tabs defaultValue="patient-history">
                 <TabsList>
-                    <TabsTrigger value="medical-record">Medical Record</TabsTrigger>
-                    <TabsTrigger value="appointments">Appointments</TabsTrigger>
-                    <TabsTrigger value="lab-results">Lab Results</TabsTrigger>
-                    <TabsTrigger value="notes">Notes</TabsTrigger>
+                    <TabsTrigger value="patient-history">Patient history</TabsTrigger>
+                    <TabsTrigger value="diagnosis-treatment">Diagnosis & treatment</TabsTrigger>
+                    <TabsTrigger value="medical-test">Medical test</TabsTrigger>
+                    <TabsTrigger value="external-reports">External reports</TabsTrigger>
                 </TabsList>
-                <TabsContent value="medical-record" className="mt-4">
+                <TabsContent value="patient-history" className="mt-4">
                      <Card>
                         <CardHeader>
-                            <CardTitle>Medical History</CardTitle>
+                            <CardTitle>Patient History</CardTitle>
                             <CardDescription>An overview of the patient's medical history.</CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -101,53 +101,39 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                         </CardContent>
                      </Card>
                 </TabsContent>
-                <TabsContent value="appointments" className="mt-4">
+                <TabsContent value="diagnosis-treatment" className="mt-4">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Upcoming Appointments</CardTitle>
-                            <CardDescription>Scheduled appointments for the patient.</CardDescription>
+                            <CardTitle>Diagnosis & Treatment</CardTitle>
+                            <CardDescription>Patient diagnosis and treatment plans.</CardDescription>
                         </CardHeader>
                          <CardContent>
-                           <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Date</TableHead>
-                                        <TableHead>Time</TableHead>
-                                        <TableHead>Reason</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell>August 5, 2024</TableCell>
-                                        <TableCell>10:00 AM</TableCell>
-                                        <TableCell>Follow-up consultation</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                           </Table>
-                           <Button className="mt-4">Schedule New Appointment</Button>
+                            <p>No diagnosis and treatment information available.</p>
+                            <Button className="mt-4">Add Information</Button>
                         </CardContent>
                     </Card>
                 </TabsContent>
-                 <TabsContent value="lab-results" className="mt-4">
+                 <TabsContent value="medical-test" className="mt-4">
                      <Card>
                         <CardHeader>
-                            <CardTitle>Lab Results</CardTitle>
-                             <CardDescription>Recent laboratory test results.</CardDescription>
+                            <CardTitle>Medical Tests</CardTitle>
+                             <CardDescription>Recent medical test results.</CardDescription>
                         </CardHeader>
                          <CardContent>
-                            <p>No new lab results.</p>
+                            <p>No new medical test results.</p>
+                             <Button className="mt-4">Add Results</Button>
                          </CardContent>
                     </Card>
                 </TabsContent>
-                 <TabsContent value="notes" className="mt-4">
+                 <TabsContent value="external-reports" className="mt-4">
                      <Card>
                         <CardHeader>
-                            <CardTitle>Clinical Notes</CardTitle>
-                             <CardDescription>Notes from clinical encounters.</CardDescription>
+                            <CardTitle>External Reports</CardTitle>
+                             <CardDescription>External medical reports.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>No notes for this patient yet.</p>
-                            <Button className="mt-4">Add Note</Button>
+                            <p>No external reports for this patient yet.</p>
+                            <Button className="mt-4">Add Report</Button>
                         </CardContent>
                     </Card>
                 </TabsContent>
