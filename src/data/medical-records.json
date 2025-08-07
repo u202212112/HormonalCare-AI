@@ -2,47 +2,558 @@
 {
   "pat_1": {
     "patientHistory": [
-      { "id": "hist_1", "condition": "Polycystic Ovary Syndrome (PCOS)", "diagnosedOn": "2022-01-15", "status": "Ongoing" },
-      { "id": "hist_2", "condition": "Hypothyroidism", "diagnosedOn": "2023-03-02", "status": "Managed" }
+      { 
+        "id": "hist_1", 
+        "condition": "Polycystic Ovary Syndrome (PCOS)", 
+        "diagnosedOn": "2022-01-15", 
+        "status": "Ongoing",
+        "description": "Diagnosed with PCOS after presenting with irregular menstrual cycles, hirsutism, and elevated androgen levels. Ultrasound showed characteristic polycystic ovaries.",
+        "symptoms": ["Irregular periods", "Hirsutism", "Weight gain", "Acne", "Hair loss"],
+        "severity": "Moderate",
+        "currentMedication": ["Metformin 500mg twice daily", "Spironolactone 50mg daily", "Oral contraceptives"],
+        "notes": "Patient responds well to current treatment regimen. Blood glucose levels stable.",
+        "lastUpdate": "2024-07-15",
+        "physician": "Dr. Sarah Chen, Endocrinologist"
+      },
+      { 
+        "id": "hist_2", 
+        "condition": "Hypothyroidism", 
+        "diagnosedOn": "2023-03-02", 
+        "status": "Managed",
+        "description": "Secondary hypothyroidism likely related to PCOS and metabolic syndrome. TSH elevated at 8.5 mIU/L, T4 low normal.",
+        "symptoms": ["Fatigue", "Weight gain", "Cold intolerance", "Dry skin", "Brain fog"],
+        "severity": "Mild",
+        "currentMedication": ["Levothyroxine 75mcg daily"],
+        "notes": "Thyroid function normalized after 6 months of treatment. Annual monitoring required.",
+        "lastUpdate": "2024-06-20",
+        "physician": "Dr. Sarah Chen, Endocrinologist"
+      },
+      { 
+        "id": "hist_3", 
+        "condition": "Insulin Resistance", 
+        "diagnosedOn": "2022-02-10", 
+        "status": "Ongoing",
+        "description": "Insulin resistance identified through glucose tolerance test. HOMA-IR score of 4.2 indicates significant insulin resistance.",
+        "symptoms": ["Acanthosis nigricans", "Post-meal fatigue", "Sugar cravings", "Difficulty losing weight"],
+        "severity": "Moderate",
+        "currentMedication": ["Metformin 500mg twice daily", "Vitamin D 2000IU daily"],
+        "notes": "Patient following low-glycemic diet. HbA1c improved from 6.1% to 5.7%.",
+        "lastUpdate": "2024-07-10",
+        "physician": "Dr. Sarah Chen, Endocrinologist"
+      }
     ],
     "diagnosisTreatment": [
-        { "id": "diag_1", "diagnosis": "Recurrent Ovarian Cysts", "treatment": "Hormonal therapy and regular monitoring.", "date": "2024-05-10" }
+        { 
+          "id": "diag_1", 
+          "diagnosis": "Recurrent Ovarian Cysts", 
+          "treatment": "Hormonal therapy and regular monitoring.", 
+          "date": "2024-05-10",
+          "icd10Code": "N83.1",
+          "description": "Multiple functional ovarian cysts detected on transvaginal ultrasound. Cysts range from 2.5-4.2cm in diameter.",
+          "treatmentPlan": "Combination oral contraceptives to suppress ovulation and prevent new cyst formation. Monthly monitoring with ultrasound for 3 months, then quarterly.",
+          "medications": ["Yasmin (drospirenone/ethinyl estradiol) 3mg/0.03mg daily", "Ibuprofen 400mg as needed for pain"],
+          "followUpDate": "2024-08-15",
+          "treatmentResponse": "Significant reduction in cyst size noted at 6-week follow-up. Patient reports decreased pelvic pain.",
+          "sideEffects": ["Mild nausea (first week)", "Breast tenderness"],
+          "physician": "Dr. Maria Rodriguez, Gynecologist",
+          "notes": "Consider switching to continuous cycling if breakthrough bleeding persists."
+        },
+        { 
+          "id": "diag_2", 
+          "diagnosis": "Metabolic Syndrome", 
+          "treatment": "Lifestyle modifications and metformin therapy.", 
+          "date": "2024-03-15",
+          "icd10Code": "E88.81",
+          "description": "Meets 4/5 criteria for metabolic syndrome: elevated waist circumference (94cm), high triglycerides (185mg/dL), low HDL (38mg/dL), elevated blood pressure (138/86), and insulin resistance.",
+          "treatmentPlan": "Weight loss goal of 10% body weight through caloric restriction and exercise. Metformin for insulin sensitivity. Mediterranean diet counseling.",
+          "medications": ["Metformin 500mg twice daily", "Omega-3 fatty acids 1g daily"],
+          "followUpDate": "2024-09-15",
+          "treatmentResponse": "Patient has lost 6kg over 4 months. Triglycerides decreased to 145mg/dL. Blood pressure improved.",
+          "sideEffects": ["Initial GI upset with metformin (resolved)"],
+          "physician": "Dr. Sarah Chen, Endocrinologist",
+          "notes": "Excellent compliance with lifestyle modifications. Consider adding statin if LDL remains elevated."
+        }
     ],
     "medicalTest": [
-        { "id": "test_1", "testName": "Ultrasound Pelvic", "date": "2024-07-15", "resultUrl": "/reports/ultrasound_pat1.pdf" }
+        { 
+          "id": "test_1", 
+          "testName": "Transvaginal Ultrasound", 
+          "date": "2024-07-15", 
+          "resultUrl": "/reports/ultrasound_pat1_202407.pdf",
+          "testType": "Imaging",
+          "orderedBy": "Dr. Maria Rodriguez",
+          "labName": "Women's Health Imaging Center",
+          "results": "Right ovary: 3.2 x 2.8 x 2.1 cm, multiple follicles 8-12mm. Left ovary: 3.5 x 3.1 x 2.3 cm, multiple follicles 6-10mm. Endometrial thickness: 8mm.",
+          "normalRange": "Ovarian volume <10 cm³, <12 follicles per ovary",
+          "interpretation": "Polycystic ovarian morphology consistent with PCOS. No dominant follicles or cysts noted.",
+          "recommendations": ["Continue current hormonal therapy", "Repeat ultrasound in 6 months", "Consider ovulation induction if pregnancy desired"],
+          "urgency": "Normal",
+          "status": "Completed"
+        },
+        { 
+          "id": "test_2", 
+          "testName": "Comprehensive Metabolic Panel", 
+          "date": "2024-07-10", 
+          "resultUrl": "/reports/cmp_pat1_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. Sarah Chen",
+          "labName": "LabCorp",
+          "results": "Glucose: 92mg/dL, HbA1c: 5.7%, Total Cholesterol: 198mg/dL, LDL: 118mg/dL, HDL: 42mg/dL, Triglycerides: 145mg/dL, TSH: 2.1 mIU/L",
+          "normalRange": "Glucose: 70-100mg/dL, HbA1c: <5.7%, TSH: 0.4-4.0 mIU/L",
+          "interpretation": "Improved glycemic control. Thyroid function normal on current levothyroxine dose. Lipid profile shows improvement.",
+          "recommendations": ["Continue current medications", "Recheck in 3 months", "Maintain current diet and exercise regimen"],
+          "urgency": "Normal",
+          "status": "Completed"
+        },
+        { 
+          "id": "test_3", 
+          "testName": "Hormone Panel", 
+          "date": "2024-06-25", 
+          "resultUrl": "/reports/hormone_pat1_202406.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. Sarah Chen",
+          "labName": "Quest Diagnostics",
+          "results": "Testosterone: 65 ng/dL, Free Testosterone: 2.1 pg/mL, DHEA-S: 285 μg/dL, Androstenedione: 3.2 ng/mL, LH: 8.5 mIU/mL, FSH: 5.2 mIU/mL",
+          "normalRange": "Testosterone: 15-70 ng/dL, LH: 5-20 mIU/mL, FSH: 3-20 mIU/mL",
+          "interpretation": "Elevated testosterone and LH consistent with PCOS. Good response to anti-androgen therapy.",
+          "recommendations": ["Continue spironolactone", "Consider increasing dose if hirsutism persists", "Recheck in 6 months"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
     ],
-    "externalReports": []
+    "externalReports": [
+      {
+        "id": "ext_1",
+        "reportName": "Nutritionist Consultation Report",
+        "date": "2024-06-15",
+        "reportUrl": "/reports/nutrition_pat1_202406.pdf",
+        "reportType": "Nutrition Assessment",
+        "source": "Healthy Living Nutrition Center",
+        "physician": "Lisa Thompson, RD",
+        "summary": "Comprehensive nutritional assessment for PCOS management. Patient educated on anti-inflammatory diet principles.",
+        "keyFindings": ["High refined carbohydrate intake", "Insufficient omega-3 fatty acids", "Adequate protein intake", "Low fiber consumption"],
+        "recommendations": ["Adopt Mediterranean-style diet", "Increase fiber intake to 35g/day", "Add omega-3 rich foods", "Limit refined sugars and processed foods"]
+      }
+    ]
   },
   "pat_2": {
-    "patientHistory": [],
-    "diagnosisTreatment": [],
-    "medicalTest": [],
-    "externalReports": []
+    "patientHistory": [
+      { 
+        "id": "hist_4", 
+        "condition": "Testicular Hypogonadism", 
+        "diagnosedOn": "2023-08-20", 
+        "status": "Ongoing",
+        "description": "Primary hypogonadism diagnosed after presenting with fatigue, decreased libido, and erectile dysfunction. Initial testosterone level 180 ng/dL.",
+        "symptoms": ["Low libido", "Erectile dysfunction", "Fatigue", "Muscle weakness", "Mood changes"],
+        "severity": "Moderate",
+        "currentMedication": ["Testosterone cypionate 200mg IM every 2 weeks", "hCG 500 IU twice weekly"],
+        "notes": "Patient showing good response to testosterone replacement therapy. Fertility preservation with hCG.",
+        "lastUpdate": "2024-07-18",
+        "physician": "Dr. James Wilson, Urologist"
+      },
+      { 
+        "id": "hist_5", 
+        "condition": "Sleep Apnea", 
+        "diagnosedOn": "2024-02-10", 
+        "status": "Managed",
+        "description": "Moderate obstructive sleep apnea diagnosed via sleep study. AHI of 22 events per hour.",
+        "symptoms": ["Loud snoring", "Daytime fatigue", "Morning headaches", "Difficulty concentrating"],
+        "severity": "Moderate",
+        "currentMedication": ["CPAP therapy nightly"],
+        "notes": "Good compliance with CPAP therapy. Daytime symptoms significantly improved.",
+        "lastUpdate": "2024-07-05",
+        "physician": "Dr. Robert Kim, Sleep Medicine"
+      }
+    ],
+    "diagnosisTreatment": [
+        { 
+          "id": "diag_3", 
+          "diagnosis": "Male Hypogonadism", 
+          "treatment": "Testosterone replacement therapy", 
+          "date": "2023-09-15",
+          "icd10Code": "E29.1",
+          "description": "Primary testicular failure with low testosterone and elevated LH/FSH levels. Klinefelter syndrome ruled out with normal karyotype.",
+          "treatmentPlan": "Testosterone cypionate injections every 2 weeks. Monitor testosterone levels, hematocrit, and PSA. Fertility counseling provided.",
+          "medications": ["Testosterone cypionate 200mg IM q2weeks", "hCG 500 IU SC twice weekly"],
+          "followUpDate": "2024-09-15",
+          "treatmentResponse": "Excellent response with testosterone levels now 650 ng/dL. Improved energy, libido, and muscle mass.",
+          "sideEffects": ["Mild acne", "Slight increase in hematocrit to 51%"],
+          "physician": "Dr. James Wilson, Urologist",
+          "notes": "Consider dose adjustment if hematocrit continues to rise. Patient desires to maintain fertility."
+        }
+    ],
+    "medicalTest": [
+        { 
+          "id": "test_4", 
+          "testName": "Testosterone and Hormone Panel", 
+          "date": "2024-07-18", 
+          "resultUrl": "/reports/hormone_pat2_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. James Wilson",
+          "labName": "LabCorp",
+          "results": "Total Testosterone: 650 ng/dL, Free Testosterone: 15.2 pg/mL, LH: 0.8 mIU/mL, FSH: 1.2 mIU/mL, Estradiol: 35 pg/mL",
+          "normalRange": "Total Testosterone: 300-1000 ng/dL, Free Testosterone: 8.7-25.1 pg/mL",
+          "interpretation": "Excellent response to testosterone replacement therapy. Suppressed LH/FSH expected with exogenous testosterone.",
+          "recommendations": ["Continue current testosterone dose", "Monitor hematocrit closely", "Recheck in 3 months"],
+          "urgency": "Normal",
+          "status": "Completed"
+        },
+        { 
+          "id": "test_5", 
+          "testName": "Complete Blood Count", 
+          "date": "2024-07-18", 
+          "resultUrl": "/reports/cbc_pat2_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. James Wilson",
+          "labName": "LabCorp",
+          "results": "Hemoglobin: 16.8 g/dL, Hematocrit: 51%, RBC: 5.2 M/μL, WBC: 6.8 K/μL, Platelets: 285 K/μL",
+          "normalRange": "Hemoglobin: 13.5-17.5 g/dL, Hematocrit: 41-50%",
+          "interpretation": "Mild elevation in hematocrit secondary to testosterone therapy. Within acceptable range.",
+          "recommendations": ["Monitor hematocrit trend", "Consider dose reduction if >54%", "Ensure adequate hydration"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
+    ],
+    "externalReports": [
+      {
+        "id": "ext_2",
+        "reportName": "Sleep Study Report",
+        "date": "2024-02-05",
+        "reportUrl": "/reports/sleep_study_pat2_202402.pdf",
+        "reportType": "Polysomnography",
+        "source": "Regional Sleep Center",
+        "physician": "Dr. Robert Kim, Sleep Medicine",
+        "summary": "Overnight polysomnography reveals moderate obstructive sleep apnea with AHI of 22 events per hour.",
+        "keyFindings": ["22 apnea-hypopnea events per hour", "Lowest oxygen saturation 82%", "Sleep efficiency 78%", "Frequent arousals"],
+        "recommendations": ["CPAP therapy with pressure 8-12 cmH2O", "Weight loss counseling", "Follow-up in 3 months", "Avoid alcohol before bedtime"]
+      }
+    ]
   },
   "pat_3": {
-     "patientHistory": [
-      { "id": "hist_3", "condition": "Menstrual Irregularities", "diagnosedOn": "2023-11-05", "status": "Under Observation" }
+    "patientHistory": [
+      { 
+        "id": "hist_6", 
+        "condition": "Menstrual Irregularities", 
+        "diagnosedOn": "2023-11-05", 
+        "status": "Under Observation",
+        "description": "Oligomenorrhea with cycles ranging from 45-90 days. No clear etiology identified yet.",
+        "symptoms": ["Irregular periods", "Mild pelvic cramping", "Mood swings", "Breast tenderness"],
+        "severity": "Mild",
+        "currentMedication": ["Vitex agnus-castus 400mg daily", "Vitamin D 1000IU daily"],
+        "notes": "Patient prefers natural approach initially. Considering hormonal evaluation if no improvement.",
+        "lastUpdate": "2024-07-22",
+        "physician": "Dr. Maria Rodriguez, Gynecologist"
+      },
+      { 
+        "id": "hist_7", 
+        "condition": "Iron Deficiency Anemia", 
+        "diagnosedOn": "2024-01-12", 
+        "status": "Improving",
+        "description": "Mild iron deficiency anemia likely secondary to heavy menstrual bleeding during irregular cycles.",
+        "symptoms": ["Fatigue", "Pale skin", "Cold hands", "Brittle nails", "Restless legs"],
+        "severity": "Mild",
+        "currentMedication": ["Ferrous sulfate 325mg daily", "Vitamin C 500mg daily"],
+        "notes": "Hemoglobin improved from 9.8 to 11.2 g/dL over 6 months. Good tolerance of iron supplements.",
+        "lastUpdate": "2024-07-08",
+        "physician": "Dr. Maria Rodriguez, Gynecologist"
+      }
     ],
-    "diagnosisTreatment": [],
-    "medicalTest": [],
-    "externalReports": []
+    "diagnosisTreatment": [
+        { 
+          "id": "diag_4", 
+          "diagnosis": "Secondary Amenorrhea", 
+          "treatment": "Hormonal evaluation and cycle regulation", 
+          "date": "2024-06-20",
+          "icd10Code": "N91.1",
+          "description": "Absent menstruation for 4 months following previous oligomenorrhea pattern. Pregnancy ruled out.",
+          "treatmentPlan": "Comprehensive hormonal workup including thyroid, prolactin, and reproductive hormones. Consider progestin challenge test.",
+          "medications": ["Medroxyprogesterone 10mg x 10 days (cycle induction)", "Folic acid 400mcg daily"],
+          "followUpDate": "2024-08-25",
+          "treatmentResponse": "Withdrawal bleeding achieved after progestin challenge. Awaiting hormone results.",
+          "sideEffects": ["Mild bloating during progestin therapy"],
+          "physician": "Dr. Maria Rodriguez, Gynecologist",
+          "notes": "Patient anxious about fertility. Reassurance provided about reversible nature of condition."
+        }
+    ],
+    "medicalTest": [
+        { 
+          "id": "test_6", 
+          "testName": "Reproductive Hormone Panel", 
+          "date": "2024-07-22", 
+          "resultUrl": "/reports/hormone_pat3_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. Maria Rodriguez",
+          "labName": "Quest Diagnostics",
+          "results": "LH: 3.2 mIU/mL, FSH: 4.8 mIU/mL, Estradiol: 45 pg/mL, Prolactin: 18 ng/mL, TSH: 1.8 mIU/L, Testosterone: 32 ng/dL",
+          "normalRange": "LH: 5-20 mIU/mL, FSH: 3-20 mIU/mL, Estradiol: 30-400 pg/mL (cycle dependent)",
+          "interpretation": "Low-normal reproductive hormones suggesting hypothalamic dysfunction. Thyroid and prolactin normal.",
+          "recommendations": ["Consider stress evaluation", "Weight and exercise assessment", "Repeat in 3 months if cycles don't normalize"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
+    ],
+    "externalReports": [
+      {
+        "id": "ext_3",
+        "reportName": "Nutritional Assessment",
+        "date": "2024-06-10",
+        "reportUrl": "/reports/nutrition_pat3_202406.pdf",
+        "reportType": "Dietitian Consultation",
+        "source": "Women's Health Nutrition",
+        "physician": "Amanda Davis, RD",
+        "summary": "Evaluation for nutritional factors contributing to menstrual irregularities. BMI 19.2, suggesting possible energy deficit.",
+        "keyFindings": ["Caloric intake 1400-1500 kcal/day", "Low body fat percentage 14%", "Intense exercise 6 days/week", "Adequate micronutrient intake"],
+        "recommendations": ["Increase caloric intake to 1800-2000 kcal/day", "Reduce exercise intensity", "Add healthy fats", "Monitor weight gain"]
+      }
+    ]
   },
   "pat_4": {
-    "patientHistory": [],
-    "diagnosisTreatment": [],
-    "medicalTest": [],
-    "externalReports": []
+    "patientHistory": [
+      { 
+        "id": "hist_8", 
+        "condition": "Type 2 Diabetes Mellitus", 
+        "diagnosedOn": "2023-05-15", 
+        "status": "Well Controlled",
+        "description": "Type 2 diabetes diagnosed during routine screening. HbA1c was 8.2% at diagnosis.",
+        "symptoms": ["Increased thirst", "Frequent urination", "Fatigue", "Blurred vision"],
+        "severity": "Moderate",
+        "currentMedication": ["Metformin 1000mg twice daily", "Glipizide 5mg daily", "Atorvastatin 20mg daily"],
+        "notes": "Excellent diabetes management. HbA1c reduced to 6.4% with lifestyle changes and medication.",
+        "lastUpdate": "2024-07-21",
+        "physician": "Dr. Michael Chang, Endocrinologist"
+      },
+      { 
+        "id": "hist_9", 
+        "condition": "Hypertension", 
+        "diagnosedOn": "2023-06-02", 
+        "status": "Controlled",
+        "description": "Essential hypertension diagnosed concurrently with diabetes. Average BP 158/94 mmHg at diagnosis.",
+        "symptoms": ["Headaches", "Dizziness", "No specific symptoms"],
+        "severity": "Moderate",
+        "currentMedication": ["Lisinopril 10mg daily", "Amlodipine 5mg daily"],
+        "notes": "Blood pressure well controlled on current regimen. Home monitoring shows consistent readings <130/80.",
+        "lastUpdate": "2024-07-21",
+        "physician": "Dr. Michael Chang, Endocrinologist"
+      }
+    ],
+    "diagnosisTreatment": [
+        { 
+          "id": "diag_5", 
+          "diagnosis": "Diabetic Nephropathy Stage 2", 
+          "treatment": "ACE inhibitor therapy and blood sugar optimization", 
+          "date": "2024-04-18",
+          "icd10Code": "E11.21",
+          "description": "Early diabetic kidney disease with microalbuminuria detected on routine screening. eGFR 75 mL/min/1.73m².",
+          "treatmentPlan": "Optimize diabetes control with HbA1c target <7%. Nephrology consultation arranged. Blood pressure control <130/80 mmHg.",
+          "medications": ["Lisinopril 10mg daily (renal protection)", "Metformin 1000mg twice daily", "Glipizide 5mg daily"],
+          "followUpDate": "2024-10-18",
+          "treatmentResponse": "Microalbumin levels stable. eGFR improved to 82 mL/min/1.73m². Good diabetes control maintained.",
+          "sideEffects": ["Mild dry cough from ACE inhibitor"],
+          "physician": "Dr. Michael Chang, Endocrinologist",
+          "notes": "Consider adding SGLT2 inhibitor if HbA1c rises or kidney function declines."
+        }
+    ],
+    "medicalTest": [
+        { 
+          "id": "test_7", 
+          "testName": "HbA1c and Diabetes Panel", 
+          "date": "2024-07-21", 
+          "resultUrl": "/reports/diabetes_pat4_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. Michael Chang",
+          "labName": "LabCorp",
+          "results": "HbA1c: 6.4%, Fasting Glucose: 118 mg/dL, Microalbumin: 25 mg/g creatinine, eGFR: 82 mL/min/1.73m²",
+          "normalRange": "HbA1c: <7% (diabetic target), Microalbumin: <30 mg/g",
+          "interpretation": "Excellent diabetes control. Stable kidney function with improving trend.",
+          "recommendations": ["Continue current medications", "Maintain lifestyle modifications", "Recheck in 3 months"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
+    ],
+    "externalReports": [
+      {
+        "id": "ext_4",
+        "reportName": "Diabetic Eye Exam",
+        "date": "2024-05-30",
+        "reportUrl": "/reports/eye_exam_pat4_202405.pdf",
+        "reportType": "Ophthalmologic Examination",
+        "source": "Vision Care Associates",
+        "physician": "Dr. Patricia Lee, Ophthalmologist",
+        "summary": "Annual diabetic retinal screening shows no evidence of diabetic retinopathy. Mild cataracts noted.",
+        "keyFindings": ["No diabetic retinopathy", "Mild nuclear sclerotic cataracts bilateral", "Normal macular appearance", "IOP 14/16 mmHg"],
+        "recommendations": ["Continue annual eye exams", "Monitor cataract progression", "Maintain good diabetes control", "Return if vision changes"]
+      }
+    ]
   },
   "pat_5": {
-    "patientHistory": [],
-    "diagnosisTreatment": [],
-    "medicalTest": [],
-    "externalReports": []
+    "patientHistory": [
+      { 
+        "id": "hist_10", 
+        "condition": "Endometriosis", 
+        "diagnosedOn": "2022-09-12", 
+        "status": "Managed",
+        "description": "Stage II endometriosis diagnosed via laparoscopy after chronic pelvic pain. Endometriomas removed from both ovaries.",
+        "symptoms": ["Severe dysmenorrhea", "Chronic pelvic pain", "Dyspareunia", "Heavy menstrual bleeding"],
+        "severity": "Moderate",
+        "currentMedication": ["Dienogest 2mg daily", "Naproxen 500mg as needed", "Calcium/Vitamin D supplement"],
+        "notes": "Good symptom control with dienogest. Pain scores reduced from 8/10 to 3/10.",
+        "lastUpdate": "2024-07-15",
+        "physician": "Dr. Lisa Martinez, Gynecologist"
+      },
+      { 
+        "id": "hist_11", 
+        "condition": "Chronic Fatigue Syndrome", 
+        "diagnosedOn": "2023-07-20", 
+        "status": "Under Management",
+        "description": "Chronic fatigue syndrome diagnosed after ruling out other causes. Symptoms persist >6 months with significant functional impairment.",
+        "symptoms": ["Persistent fatigue", "Post-exertional malaise", "Cognitive dysfunction", "Sleep disturbances"],
+        "severity": "Moderate",
+        "currentMedication": ["CoQ10 100mg daily", "B-complex vitamins", "Melatonin 3mg at bedtime"],
+        "notes": "Gradual improvement with pacing and energy conservation strategies. Working with occupational therapist.",
+        "lastUpdate": "2024-07-10",
+        "physician": "Dr. Rachel Green, Internal Medicine"
+      }
+    ],
+    "diagnosisTreatment": [
+        { 
+          "id": "diag_6", 
+          "diagnosis": "Endometriosis-Associated Infertility", 
+          "treatment": "Fertility preservation and assisted reproduction planning", 
+          "date": "2024-03-25",
+          "icd10Code": "N80.9",
+          "description": "18-month history of infertility in setting of endometriosis. Ovarian reserve testing shows diminished reserve.",
+          "treatmentPlan": "Complete fertility workup. Consider ovulation induction vs. IVF depending on tubal status and partner factors.",
+          "medications": ["Folic acid 400mcg daily", "CoQ10 100mg daily (oocyte quality)", "Vitamin D 2000IU daily"],
+          "followUpDate": "2024-09-25",
+          "treatmentResponse": "Partner's semen analysis normal. HSG shows patent tubes. Proceeding with ovulation induction.",
+          "sideEffects": ["None reported"],
+          "physician": "Dr. Susan Kim, Reproductive Endocrinologist",
+          "notes": "Patient counseled about impact of endometriosis on fertility. Good prognosis with treatment."
+        }
+    ],
+    "medicalTest": [
+        { 
+          "id": "test_8", 
+          "testName": "Ovarian Reserve Testing", 
+          "date": "2024-07-15", 
+          "resultUrl": "/reports/fertility_pat5_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. Susan Kim",
+          "labName": "Reproductive Medicine Lab",
+          "results": "AMH: 1.8 ng/mL, FSH: 8.2 mIU/mL, Estradiol: 42 pg/mL, Antral Follicle Count: 12",
+          "normalRange": "AMH: >1.0 ng/mL (age 28), FSH: <10 mIU/mL",
+          "interpretation": "Diminished ovarian reserve for age but still within treatable range for fertility treatments.",
+          "recommendations": ["Consider fertility treatments sooner rather than later", "Lifestyle optimization", "Recheck AMH in 6 months"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
+    ],
+    "externalReports": [
+      {
+        "id": "ext_5",
+        "reportName": "Hysterosalpingography Report",
+        "date": "2024-04-18",
+        "reportUrl": "/reports/hsg_pat5_202404.pdf",
+        "reportType": "Radiologic Procedure",
+        "source": "Women's Imaging Center",
+        "physician": "Dr. Mark Thompson, Radiologist",
+        "summary": "HSG demonstrates patent fallopian tubes bilaterally with normal uterine cavity contour.",
+        "keyFindings": ["Bilateral tubal patency", "Normal uterine cavity", "No hydrosalpinx", "Mild spillage delay right tube"],
+        "recommendations": ["Tubes patent for natural conception", "No contraindication to IVF if needed", "Follow up with fertility specialist"]
+      }
+    ]
   },
   "pat_6": {
-    "patientHistory": [],
-    "diagnosisTreatment": [],
-    "medicalTest": [],
-    "externalReports": []
+    "patientHistory": [
+      { 
+        "id": "hist_12", 
+        "condition": "Benign Prostatic Hyperplasia", 
+        "diagnosedOn": "2023-10-08", 
+        "status": "Managed",
+        "description": "Moderate BPH with prostate volume 55cc on ultrasound. IPSS score 18 indicating moderate symptoms.",
+        "symptoms": ["Weak urine stream", "Frequent urination", "Nocturia 3-4x/night", "Incomplete emptying"],
+        "severity": "Moderate",
+        "currentMedication": ["Tamsulosin 0.4mg daily", "Finasteride 5mg daily", "Saw palmetto 320mg daily"],
+        "notes": "Good symptom improvement. IPSS score reduced to 8. PSA stable at 2.1 ng/mL.",
+        "lastUpdate": "2024-07-22",
+        "physician": "Dr. James Wilson, Urologist"
+      },
+      { 
+        "id": "hist_13", 
+        "condition": "Andropause/Late-Onset Hypogonadism", 
+        "diagnosedOn": "2024-01-15", 
+        "status": "Under Evaluation",
+        "description": "Gradual onset of hypogonadal symptoms with borderline low testosterone levels. Age-related decline vs. pathological cause being evaluated.",
+        "symptoms": ["Decreased energy", "Reduced muscle mass", "Mood changes", "Decreased libido"],
+        "severity": "Mild",
+        "currentMedication": ["Under consideration for testosterone therapy"],
+        "notes": "Lifestyle modifications attempted first. Patient hesitant about hormone therapy due to prostate concerns.",
+        "lastUpdate": "2024-07-22",
+        "physician": "Dr. James Wilson, Urologist"
+      }
+    ],
+    "diagnosisTreatment": [
+        { 
+          "id": "diag_7", 
+          "diagnosis": "Lower Urinary Tract Symptoms secondary to BPH", 
+          "treatment": "Alpha-blocker and 5-alpha reductase inhibitor therapy", 
+          "date": "2023-11-15",
+          "icd10Code": "N40.1",
+          "description": "Moderate LUTS with good response to medical therapy. Patient avoiding surgical intervention at this time.",
+          "treatmentPlan": "Combination therapy with tamsulosin and finasteride. Annual monitoring with PSA, symptom scores, and uroflowmetry.",
+          "medications": ["Tamsulosin 0.4mg daily", "Finasteride 5mg daily"],
+          "followUpDate": "2024-11-15",
+          "treatmentResponse": "Significant symptom improvement. Uroflow shows increased peak flow rate from 8 to 14 mL/s.",
+          "sideEffects": ["Mild dizziness initially", "Decreased ejaculatory volume"],
+          "physician": "Dr. James Wilson, Urologist",
+          "notes": "Patient counseled about sexual side effects. Consider surgical options if medical therapy fails."
+        }
+    ],
+    "medicalTest": [
+        { 
+          "id": "test_9", 
+          "testName": "Prostate Specific Antigen", 
+          "date": "2024-07-22", 
+          "resultUrl": "/reports/psa_pat6_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. James Wilson",
+          "labName": "LabCorp",
+          "results": "PSA: 2.1 ng/mL (stable from previous 2.0 ng/mL)",
+          "normalRange": "PSA: <4.0 ng/mL (age-adjusted)",
+          "interpretation": "Stable PSA levels on finasteride therapy. No concerning trend.",
+          "recommendations": ["Continue annual PSA monitoring", "Any doubling of PSA warrants evaluation", "Maintain current medications"],
+          "urgency": "Normal",
+          "status": "Completed"
+        },
+        { 
+          "id": "test_10", 
+          "testName": "Testosterone Level", 
+          "date": "2024-07-22", 
+          "resultUrl": "/reports/testosterone_pat6_202407.pdf",
+          "testType": "Laboratory",
+          "orderedBy": "Dr. James Wilson",
+          "labName": "Quest Diagnostics",
+          "results": "Total Testosterone: 285 ng/dL, Free Testosterone: 6.8 pg/mL, SHBG: 45 nmol/L",
+          "normalRange": "Total Testosterone: 300-1000 ng/dL, Free Testosterone: 8.7-25.1 pg/mL",
+          "interpretation": "Borderline low testosterone levels. Free testosterone below normal range.",
+          "recommendations": ["Repeat morning testosterone", "Consider testosterone therapy after BPH stabilized", "Lifestyle optimization"],
+          "urgency": "Normal",
+          "status": "Completed"
+        }
+    ],
+    "externalReports": [
+      {
+        "id": "ext_6",
+        "reportName": "Transrectal Ultrasound",
+        "date": "2024-03-20",
+        "reportUrl": "/reports/trus_pat6_202403.pdf",
+        "reportType": "Imaging Study",
+        "source": "Urology Associates Imaging",
+        "physician": "Dr. James Wilson, Urologist",
+        "summary": "TRUS shows enlarged prostate gland with heterogeneous echo pattern consistent with BPH. No suspicious lesions identified.",
+        "keyFindings": ["Prostate volume 55cc", "Heterogeneous echo pattern", "No focal lesions", "Mild median lobe enlargement"],
+        "recommendations": ["Continue medical therapy", "No biopsy indicated at this time", "Repeat imaging if symptoms worsen"]
+      }
+    ]
   }
 }

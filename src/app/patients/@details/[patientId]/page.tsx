@@ -1,14 +1,21 @@
 'use client'
 
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import type { Patient, MedicalRecord } from "@/lib/types";
-import { Pencil, FileText } from "lucide-react";
+import type { Patient, MedicalRecord, PatientHistory, DiagnosisTreatment, MedicalTest, ExternalReport } from "@/lib/types";
+import { Pencil, FileText, Eye } from "lucide-react";
 import medicalRecords from '@/data/medical-records.json';
+import { 
+  PatientHistoryModal, 
+  DiagnosisTreatmentModal, 
+  MedicalTestModal, 
+  ExternalReportModal 
+} from '@/components/patient-detail-modals';
 
 const patients: Patient[] = [
   { id: 'pat_1', name: 'Olivia Martin', email: 'olivia.martin@email.com', lastCheckIn: 'July 20, 2024', status: 'Stable', avatar: 'https://placehold.co/100x100.png', initials: 'OM' },
@@ -26,6 +33,11 @@ const statusVariant: { [key in Patient['status']]: 'default' | 'secondary' | 'de
 };
 
 export default function PatientDetailsPage({ params }: { params: { patientId: string } }) {
+  const [selectedHistoryRecord, setSelectedHistoryRecord] = useState<PatientHistory | null>(null);
+  const [selectedDiagnosisRecord, setSelectedDiagnosisRecord] = useState<DiagnosisTreatment | null>(null);
+  const [selectedTestRecord, setSelectedTestRecord] = useState<MedicalTest | null>(null);
+  const [selectedExternalRecord, setSelectedExternalRecord] = useState<ExternalReport | null>(null);
+  
   const patient = patients.find(p => p.id === params.patientId);
   const record: MedicalRecord | undefined = (medicalRecords as Record<string, MedicalRecord>)[params.patientId];
   const age = 34; // Placeholder
@@ -82,15 +94,32 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                                         <TableHead>Condition</TableHead>
                                         <TableHead>Diagnosed On</TableHead>
                                         <TableHead>Status</TableHead>
+                                        <TableHead>Severity</TableHead>
+                                        <TableHead className="text-right">Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     {record.patientHistory.map(entry => (
-                                      <TableRow key={entry.id}>
-                                          <TableCell>{entry.condition}</TableCell>
+                                      <TableRow key={entry.id} className="cursor-pointer hover:bg-muted/50">
+                                          <TableCell className="font-medium">{entry.condition}</TableCell>
                                           <TableCell>{entry.diagnosedOn}</TableCell>
                                           <TableCell>
                                               <Badge variant={entry.status === 'Ongoing' ? 'secondary' : 'default'}>{entry.status}</Badge>
+                                          </TableCell>
+                                          <TableCell>
+                                              <Badge variant={entry.severity === 'Severe' ? 'destructive' : entry.severity === 'Moderate' ? 'secondary' : 'default'}>
+                                                {entry.severity}
+                                              </Badge>
+                                          </TableCell>
+                                          <TableCell className="text-right">
+                                            <Button 
+                                              variant="outline" 
+                                              size="sm"
+                                              onClick={() => setSelectedHistoryRecord(entry)}
+                                            >
+                                              <Eye className="mr-2 h-4 w-4" />
+                                              View Details
+                                            </Button>
                                           </TableCell>
                                       </TableRow>
                                     ))}
@@ -113,9 +142,24 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                             {record.diagnosisTreatment.length > 0 ? (
                               <div className="space-y-4">
                                 {record.diagnosisTreatment.map(entry => (
-                                  <div key={entry.id} className="border-b pb-4">
-                                    <p className="font-semibold">{entry.diagnosis} <span className="text-sm font-normal text-muted-foreground">({entry.date})</span></p>
-                                    <p className="text-sm">{entry.treatment}</p>
+                                  <div 
+                                    key={entry.id} 
+                                    className="border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                                    onClick={() => setSelectedDiagnosisRecord(entry)}
+                                  >
+                                    <div className="flex justify-between items-start">
+                                      <div className="flex-1">
+                                        <p className="font-semibold text-lg">{entry.diagnosis}</p>
+                                        <p className="text-sm text-muted-foreground mb-2">
+                                          <span className="font-medium">ICD-10:</span> {entry.icd10Code} • <span className="font-medium">Date:</span> {entry.date}
+                                        </p>
+                                        <p className="text-sm">{entry.description}</p>
+                                      </div>
+                                      <Button variant="outline" size="sm">
+                                        <Eye className="mr-2 h-4 w-4" />
+                                        View Details
+                                      </Button>
+                                    </div>
                                   </div>
                                 ))}
                               </div>
@@ -139,16 +183,37 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                                       <TableRow>
                                           <TableHead>Test Name</TableHead>
                                           <TableHead>Date</TableHead>
-                                          <TableHead>Result</TableHead>
+                                          <TableHead>Type</TableHead>
+                                          <TableHead>Status</TableHead>
+                                          <TableHead>Urgency</TableHead>
+                                          <TableHead className="text-right">Actions</TableHead>
                                       </TableRow>
                                   </TableHeader>
                                   <TableBody>
                                       {record.medicalTest.map(test => (
-                                        <TableRow key={test.id}>
-                                            <TableCell>{test.testName}</TableCell>
+                                        <TableRow key={test.id} className="cursor-pointer hover:bg-muted/50">
+                                            <TableCell className="font-medium">{test.testName}</TableCell>
                                             <TableCell>{test.date}</TableCell>
+                                            <TableCell>{test.testType}</TableCell>
                                             <TableCell>
-                                                <Button variant="outline" size="sm"><FileText className="mr-2 h-4 w-4"/> View</Button>
+                                              <Badge variant={test.status === 'Completed' ? 'default' : test.status === 'Pending' ? 'secondary' : 'destructive'}>
+                                                {test.status}
+                                              </Badge>
+                                            </TableCell>
+                                            <TableCell>
+                                              <Badge variant={test.urgency === 'Normal' ? 'default' : test.urgency === 'Urgent' ? 'secondary' : 'destructive'}>
+                                                {test.urgency}
+                                              </Badge>
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <Button 
+                                                  variant="outline" 
+                                                  size="sm"
+                                                  onClick={() => setSelectedTestRecord(test)}
+                                                >
+                                                  <Eye className="mr-2 h-4 w-4"/>
+                                                  View Results
+                                                </Button>
                                             </TableCell>
                                         </TableRow>
                                       ))}
@@ -159,7 +224,7 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                            )}
                              <Button className="mt-4">Add Results</Button>
                          </CardContent>
-                    </card>
+                    </Card>
                 </TabsContent>
                  <TabsContent value="external-reports" className="mt-4">
                      <Card>
@@ -169,7 +234,31 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
                         </CardHeader>
                         <CardContent>
                             {record.externalReports.length > 0 ? (
-                                <p>External reports are available.</p>
+                                <div className="space-y-4">
+                                  {record.externalReports.map(report => (
+                                    <div 
+                                      key={report.id}
+                                      className="border rounded-lg p-4 cursor-pointer hover:bg-muted/50 transition-colors"
+                                      onClick={() => setSelectedExternalRecord(report)}
+                                    >
+                                      <div className="flex justify-between items-start">
+                                        <div className="flex-1">
+                                          <p className="font-semibold text-lg">{report.reportName}</p>
+                                          <p className="text-sm text-muted-foreground mb-2">
+                                            <span className="font-medium">Type:</span> {report.reportType} • 
+                                            <span className="font-medium"> Date:</span> {report.date} • 
+                                            <span className="font-medium"> Source:</span> {report.source}
+                                          </p>
+                                          <p className="text-sm">{report.summary}</p>
+                                        </div>
+                                        <Button variant="outline" size="sm">
+                                          <Eye className="mr-2 h-4 w-4" />
+                                          View Report
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
                             ) : (
                                 <p>No external reports for this patient yet.</p>
                             )}
@@ -180,6 +269,31 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
             </Tabs>
         </CardContent>
       </Card>
+
+      {/* Modals */}
+      <PatientHistoryModal 
+        isOpen={!!selectedHistoryRecord}
+        onClose={() => setSelectedHistoryRecord(null)}
+        record={selectedHistoryRecord}
+      />
+      
+      <DiagnosisTreatmentModal 
+        isOpen={!!selectedDiagnosisRecord}
+        onClose={() => setSelectedDiagnosisRecord(null)}
+        record={selectedDiagnosisRecord}
+      />
+      
+      <MedicalTestModal 
+        isOpen={!!selectedTestRecord}
+        onClose={() => setSelectedTestRecord(null)}
+        record={selectedTestRecord}
+      />
+      
+      <ExternalReportModal 
+        isOpen={!!selectedExternalRecord}
+        onClose={() => setSelectedExternalRecord(null)}
+        record={selectedExternalRecord}
+      />
     </main>
   );
 }
