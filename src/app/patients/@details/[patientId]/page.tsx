@@ -33,14 +33,14 @@ export default function PatientDetailsPage({ params }: { params: { patientId: st
 
   if (!patient || !record) {
     return (
-        <main className="flex-1 overflow-auto p-4 md:p-6">
-            <Card className="flex h-full items-center justify-center">
-                <CardHeader className="text-center">
-                    <CardTitle>Patient not found</CardTitle>
-                    <CardDescription>The patient with the specified ID could not be found.</CardDescription>
-                </CardHeader>
-            </Card>
-        </main>
+      <main className="flex-1 overflow-auto p-4 md:p-6 bg-muted/20">
+        <Card className="flex h-full items-center justify-center">
+          <CardHeader className="text-center">
+            <CardTitle>Patient not found</CardTitle>
+            <CardDescription>The patient with the specified ID could not be found.</CardDescription>
+          </CardHeader>
+        </Card>
+      </main>
     );
   }
 
